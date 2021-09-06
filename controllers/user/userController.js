@@ -136,3 +136,22 @@ exports.userLogin = async (req, res) => {
         })
     }
 }
+
+
+// delete user
+exports.deleteUser = async (req, res) => {
+    try{
+        const deleteUser = await User.findByIdAndDelete({ _id: req.params.id });
+
+        res.status(200).json({
+            status: 'User delete successful!',
+            delete: true
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failed!',
+            message: err.message
+        })
+    }
+}

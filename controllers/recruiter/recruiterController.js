@@ -142,3 +142,22 @@ exports.recruiterLogin = async (req, res) => {
         })
     }
 }
+
+
+// delete user
+exports.deleteRecruiter = async (req, res) => {
+    try{
+        const deleteRecruiter = await Recruiter.findByIdAndDelete({ _id: req.params.id });
+
+        res.status(200).json({
+            status: 'Recruiter delete successful!',
+            delete: true
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failed!',
+            message: err.message
+        })
+    }
+}

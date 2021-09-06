@@ -2,7 +2,14 @@
 const express = require('express');
 
 // internal import
-const { createUser, getUsers, getUser, userLogin } = require('../controllers/user/userController');
+const { 
+    createUser, 
+    getUsers, 
+    getUser, 
+    userLogin, 
+    deleteUser 
+} = require('../controllers/user/userController');
+
 const { checkLogin } = require('../middleware/checkLogin')
 
 // app initialization
@@ -14,6 +21,8 @@ router.post('/login', userLogin);
 
 router.get('/getAll', getUsers);
 router.get('/:id', getUser);
+
+router.delete('/:id', deleteUser);
 
 
 module.exports = router;
