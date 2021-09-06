@@ -66,6 +66,7 @@ exports.getUsers = async (req, res) => {
         const allUser = await User.find().select('-password -__v');
         res.status(200).json({
             status: 'successful!',
+            totalUser: allUser.length,
             user: allUser
         })
 

@@ -6,6 +6,7 @@ const morgan = require('morgan')
 // internal import
 const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
+const recruiterRoutes = require('./routes/recruiterRoutes');
 
 // app initialization
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.urlencoded({extended: false}))
 // routes
 app.use('/admin', adminRoutes);
 app.use('/user', userRoutes);
+app.use('/recruiter', recruiterRoutes);
 
 // error handling
 app.all('*', (req, res, next) => {
