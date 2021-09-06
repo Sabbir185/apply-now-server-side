@@ -3,7 +3,7 @@ const express = require('express');
 
 // internal import
 const {adminCreate, getAllAdmin, adminLogin} = require('../controllers/admin/adminController');
-const { isAdminAuth } = require('../middleware/admin/isAdminAuth')
+const { isAdminAuth } = require('../middleware/checkLogin')
 
 // app initialization
 const router = express.Router();
@@ -13,7 +13,7 @@ router.post('/', adminCreate);
 
 router.post('/login', adminLogin);
 
-router.get('/', isAdminAuth, getAllAdmin);
+router.get('/', getAllAdmin);
 
 
 module.exports = router;
