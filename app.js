@@ -7,6 +7,7 @@ const morgan = require('morgan')
 const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
 const recruiterRoutes = require('./routes/recruiterRoutes');
+const jobPostRoutes = require('./routes/jobPostRoutes');
 
 // app initialization
 const app = express();
@@ -25,6 +26,8 @@ app.use(express.urlencoded({extended: false}))
 app.use('/admin', adminRoutes);
 app.use('/user', userRoutes);
 app.use('/recruiter', recruiterRoutes);
+app.use('/jobPost', jobPostRoutes);
+
 
 // error handling
 app.all('*', (req, res, next) => {
@@ -35,4 +38,6 @@ app.all('*', (req, res, next) => {
     next();
 })
 
+
+// module export
 module.exports = app;

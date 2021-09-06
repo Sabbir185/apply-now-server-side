@@ -38,7 +38,7 @@ const jobPostSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: [true, "company needed"],
-        minlength: [3, "company name too small!"]
+        minlength: [3, "company name too small!"],
     },
     recruiter: {
             type: mongoose.Types.ObjectId,
@@ -54,4 +54,4 @@ const jobPostSchema = new mongoose.Schema({
 const JobPost = mongoose.model('JobPost', jobPostSchema);
 
 // module export
-model.exports = JobPost;
+module.exports = JobPost;
