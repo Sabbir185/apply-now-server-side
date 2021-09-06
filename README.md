@@ -1,8 +1,8 @@
-> Apply-Now
-### _server side code_
+**Apply-Now**
+_server side code_
 <hr>
 
-### apply-now is a job-hunting website where a job seeker will find many types of jobs for apply. The recruiter can able to post jobs and also s/he can delete or update job's descriptions. The admin takes care of all posts and others.
+#### apply-now is a job-hunting website where a job seeker will find many types of jobs for apply. The recruiter can able to post jobs and also s/he can delete or update job's descriptions. The admin takes care of all posts and others.
 
 <hr>
 
