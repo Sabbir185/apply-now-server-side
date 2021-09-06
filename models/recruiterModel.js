@@ -45,11 +45,19 @@ const recruiterSchema = new mongoose.Schema({
         required: [true, "Recruiter's must have a company"],
         minlength: [3, "company name too small!"]
     },
-    salary: {
+    country: {
         type: String,
         trim: true,
-        required: [true, "Input salary range"],
-    }
+        required: [true, "Recruiter's country name needed"],
+        minlength: [3, "country name too small!"],
+        lowercase: true
+    },
+    jobPost: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'JobPost',
+        }
+    ]
 },{
     timestamps: true,
 });

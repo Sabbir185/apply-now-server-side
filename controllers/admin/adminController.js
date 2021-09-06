@@ -2,7 +2,7 @@
 const bcrypt = require('bcrypt');
 
 // internal import
-const Admin = require('../../models/admin/AdminModel');
+const Admin = require('../../models/AdminModel');
 
 
 // create new admin
