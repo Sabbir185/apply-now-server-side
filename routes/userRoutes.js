@@ -2,7 +2,7 @@
 const express = require('express');
 
 // internal import
-const { createUser } = require('../controllers/user/userController');
+const { createUser, getUsers, getUser } = require('../controllers/user/userController');
 const { checkLogin } = require('../middleware/checkLogin')
 
 // app initialization
@@ -13,7 +13,8 @@ router.post('/', createUser);
 
 // router.post('/login', adminLogin);
 
-// router.get('/', getAllAdmin);
+router.get('/getAll', getUsers);
+router.get('/:id', getUser);
 
 
 module.exports = router;

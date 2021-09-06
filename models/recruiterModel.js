@@ -85,4 +85,4 @@ recruiterSchema.methods.generateRecruiterJWT = async function() {
 const Recruiter = mongoose.model('Recruiter', recruiterSchema);
 
 // module export
-model.exports = Recruiter;
+module.exports = Recruiter;

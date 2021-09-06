@@ -55,6 +55,25 @@ exports.getAllAdmin = async (req, res) => {
 }
 
 
+// get admin by id
+exports.getAdmin = async (req, res) => {
+    try{
+        const admin = await Admin.find({_id: req.params.id}).select('-password -__v');
+
+        res.status(200).json({
+            status: 'successful!',
+            data: admin
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'failed!',
+            message: err.message
+        })
+    }
+}
+
+
 // admin login
 exports.adminLogin = async (req, res) => {
     try{

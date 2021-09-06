@@ -2,7 +2,13 @@
 const express = require('express');
 
 // internal import
-const {adminCreate, getAllAdmin, adminLogin} = require('../controllers/admin/adminController');
+const {
+    adminCreate, 
+    getAllAdmin, 
+    adminLogin, 
+    getAdmin
+} = require('../controllers/admin/adminController');
+
 const { isAdminAuth } = require('../middleware/checkLogin')
 
 // app initialization
@@ -14,6 +20,9 @@ router.post('/', adminCreate);
 router.post('/login', adminLogin);
 
 router.get('/', getAllAdmin);
+
+router.get('/:id', getAdmin);
+
 
 
 module.exports = router;
