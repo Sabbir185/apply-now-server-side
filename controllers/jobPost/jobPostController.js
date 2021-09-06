@@ -67,9 +67,44 @@ exports.getPost = async (req, res) => {
 }
 
 
+// update post by id
+exports.updateJobPost = async (req, res) => {
+    try{
+        const checkPost = await  JobPost.findById({ _id: req.params.id })
+        if(!checkPost){
+            return res.status(400).json({
+                message: 'Post Not Found!',
+            });
+        }
+
+        const post = await JobPost.updateOne({ _id: req.params.id },{
+            isApproved: req.body.isApproved
+        });
+        
+        res.status(200).json({
+            status: 'post updated successfully!',
+            data: post,
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failure!',
+            message: err.message
+        })
+    }
+}
+
+
 // delete post by id
 exports.deletePost = async (req, res) => {
     try{
+        const checkPost = await  JobPost.findById({ _id: req.params.id })
+        if(!checkPost){
+            return res.status(400).json({
+                message: 'Post Not Found!',
+            });
+        }
+
         const post = await JobPost.findByIdAndDelete({ _id: req.params.id });
         
         res.status(200).json({

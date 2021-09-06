@@ -6,7 +6,8 @@ const {
     createPost, 
     getPosts, 
     getPost, 
-    deletePost 
+    deletePost,
+    updateJobPost 
 } = require('../controllers/jobPost/jobPostController');
 
 const { checkLogin } = require('../middleware/checkLogin')
@@ -20,6 +21,8 @@ router.post('/',checkLogin, createPost);
 router.get('/', getPosts);
 
 router.get('/:id', getPost);
+
+router.patch('/:id', checkLogin, updateJobPost);
 
 router.delete('/:id', checkLogin, deletePost);
 

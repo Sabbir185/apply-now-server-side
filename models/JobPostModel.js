@@ -40,6 +40,10 @@ const jobPostSchema = new mongoose.Schema({
         required: [true, "company needed"],
         minlength: [3, "company name too small!"],
     },
+    isApproved: {
+        type: Boolean,
+        default: false,
+    },
     recruiter: {
             type: mongoose.Types.ObjectId,
             ref: 'Recruiter',
