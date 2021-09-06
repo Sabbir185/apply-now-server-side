@@ -1,6 +1,6 @@
 // internal import
 const JobPost = require('../../models/JobPostModel');
-const Recruiter = require('../../models/recruiterModel')
+const Recruiter = require('../../models/recruiterModel');
 
 
 // create post
@@ -51,7 +51,7 @@ exports.getPosts = async (req, res) => {
 // get post by id
 exports.getPost = async (req, res) => {
     try{
-        const post = await JobPost.find({ _id: req.params.id }).select("-__v")
+        const post = await JobPost.find({ _id: req.params.id }).populate("recruiter").select("-__v")
         
         res.status(200).json({
             status: 'OK',

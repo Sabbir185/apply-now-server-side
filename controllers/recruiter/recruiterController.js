@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const Recruiter = require('../../models/recruiterModel');
 
 
-// create new user
+// create new recruiter
 exports.createRecruiter = async (req, res) => {
     const checkRecruiter = await  Recruiter.findOne({$or: [{username: req.body.username}, {email: req.body.email} ]}).select('username email -_id')
     if(checkRecruiter){
@@ -64,7 +64,7 @@ exports.createRecruiter = async (req, res) => {
 }
 
 
-// get all user
+// get all recruiter
 exports.getRecruiters = async (req, res) => {
     try{
         const allRecruiter = await Recruiter.find().select('-password -__v');
@@ -85,10 +85,12 @@ exports.getRecruiters = async (req, res) => {
 }
 
 
-// get user by id
+// get recruiter by id
 exports.getRecruiter = async (req, res) => {
     try{
-        const recruiter = await Recruiter.find({_id: req.params.id}).select('-password -__v');
+        const recruiter = await Recruiter.find({_id: req.params.id})
+                                         .populate('jobPost')
+                                         .select('-password -__v');
         res.status(200).json({
             status: 'successful!',
             user: recruiter
@@ -144,7 +146,7 @@ exports.recruiterLogin = async (req, res) => {
 }
 
 
-// delete user
+// delete recruiter
 exports.deleteRecruiter = async (req, res) => {
     try{
         const deleteRecruiter = await Recruiter.findByIdAndDelete({ _id: req.params.id });

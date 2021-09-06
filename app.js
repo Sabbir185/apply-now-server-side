@@ -8,6 +8,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
 const recruiterRoutes = require('./routes/recruiterRoutes');
 const jobPostRoutes = require('./routes/jobPostRoutes');
+const applicationRoutes = require('./routes/applicationRoutes');
 
 // app initialization
 const app = express();
@@ -27,6 +28,7 @@ app.use('/admin', adminRoutes);
 app.use('/user', userRoutes);
 app.use('/recruiter', recruiterRoutes);
 app.use('/jobPost', jobPostRoutes);
+app.use('/application', applicationRoutes);
 
 
 // error handling
