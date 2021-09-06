@@ -66,4 +66,4 @@ userSchema.methods.generateUserJWT = async function() {
 const User = mongoose.model('User', userSchema);
 
 // module export
-model.exports = User;
+module.exports = User;

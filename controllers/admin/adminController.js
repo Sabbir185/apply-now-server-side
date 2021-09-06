@@ -13,6 +13,7 @@ exports.adminCreate = async (req, res) => {
             username: req.body.username,
             name: req.body.name,
             email: req.body.email,
+            image: req.body.image,
             password: hashedPassword
         })
 

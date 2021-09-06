@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-exports.isAdminAuth = async (req, res, next) => {
+exports.checkLogin = async (req, res, next) => {
     const { authorization } = req.headers;
 
    if(authorization && authorization.startsWith('Bearer')){

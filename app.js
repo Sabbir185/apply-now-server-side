@@ -5,6 +5,7 @@ const morgan = require('morgan')
 
 // internal import
 const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // app initialization
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({extended: false}))
 
 // routes
 app.use('/admin', adminRoutes);
+app.use('/user', userRoutes);
 
 // error handling
 app.all('*', (req, res, next) => {
