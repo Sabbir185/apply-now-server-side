@@ -5,7 +5,8 @@ const express = require('express');
 const { 
     createRecruiter, 
     getRecruiters,
-    getRecruiter
+    getRecruiter,
+    recruiterLogin
 } = require('../controllers/recruiter/recruiterController');
 
 const { checkLogin } = require('../middleware/checkLogin')
@@ -16,7 +17,7 @@ const router = express.Router();
 // routes
 router.post('/', createRecruiter);
 
-// router.post('/login', adminLogin);
+router.post('/login', recruiterLogin);
 
 router.get('/', getRecruiters);
 

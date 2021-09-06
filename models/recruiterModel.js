@@ -72,7 +72,7 @@ recruiterSchema.methods.matchPassword = async function(enterPassword) {
 // generate token for user
 recruiterSchema.methods.generateRecruiterJWT = async function() {
     return await jwt.sign(
-        {username: this.username, name: this.name, email: this.email},
+        {id: this._id, username: this.username, name: this.name, email: this.email},
         process.env.JWT_SECRET,
         {
             expiresIn: `${ process.env.JWT_EXPIRE}`

@@ -103,3 +103,42 @@ exports.getRecruiter = async (req, res) => {
         });
     }
 }
+
+
+// recruiter login
+exports.recruiterLogin = async (req, res) => {
+    try{
+        const {username, password} = req.body;
+        const recruiter = await Recruiter.findOne({ username });
+
+        if(recruiter && (await recruiter.matchPassword(password))) {
+
+            const recruiterToken = await recruiter.generateRecruiterJWT();
+
+            res.status(200).json({
+                status: 'successful',
+                token: recruiterToken,
+                user : {
+                    id : recruiter._id,
+                    username : recruiter.username,
+                    name : recruiter.name,
+                    email : recruiter.email,
+                    country : recruiter.country,
+                    role : recruiter.role,
+                    company : recruiter.company,
+                }
+            })
+
+        }else {
+            res.status(401).json({
+                status: 'Authentication failed!',
+            })
+        }
+
+    }catch(err){
+        res.status(401).json({
+            status: 'Authentication failed!',
+            error: err.message
+        })
+    }
+}

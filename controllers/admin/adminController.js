@@ -92,7 +92,8 @@ exports.adminLogin = async (req, res) => {
                     id : admin._id,
                     username : admin.username,
                     name : admin.name,
-                    name : admin.name,
+                    email : admin.email,
+                    role : admin.role,
                 }
             })
         }else{

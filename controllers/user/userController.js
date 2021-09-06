@@ -99,3 +99,40 @@ exports.getUser = async (req, res) => {
         });
     }
 }
+
+
+// user login
+exports.userLogin = async (req, res) => {
+    try{
+        const {username, password} = req.body;
+        const user = await User.findOne({ username });
+
+        if(user && (await user.matchPassword(password))) {
+
+            const userToken = await user.generateUserJWT();
+
+            res.status(200).json({
+                status: 'successful',
+                token: userToken,
+                user : {
+                    id : user._id,
+                    username : user.username,
+                    name : user.name,
+                    email : user.email,
+                    role : user.role,
+                }
+            })
+
+        }else{
+            res.status(404).json({
+                message: 'Authentication failed!',
+            })
+        }
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Authentication failed!',
+            error: err.message
+        })
+    }
+}
