@@ -1,7 +1,8 @@
 // external import
 const express = require('express');
 const dotenv = require('dotenv');
-const morgan = require('morgan')
+const morgan = require('morgan');
+const cors = require('cors');
 
 // internal import
 const adminRoutes = require('./routes/adminRoutes');
@@ -14,13 +15,15 @@ const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 dotenv.config();
 
+
 // middleware
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}));
 
 
 // routes
