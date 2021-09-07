@@ -7,6 +7,7 @@ const jobPostSchema = new mongoose.Schema({
         required: [true, "Job must have a title"],
         trim: true,
         minlength: [6, 'title needs at lest 6 characters'],
+        lowercase: true
     },
     description: {
         type: String,
@@ -28,7 +29,8 @@ const jobPostSchema = new mongoose.Schema({
     },
     jobType: {
         type: String,
-        enum: ['remote','office work']
+        enum: ['remote','office work'],
+        lowercase: true
     },
     image: {
         type: String,

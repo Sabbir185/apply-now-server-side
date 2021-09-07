@@ -67,6 +67,49 @@ exports.getPost = async (req, res) => {
 }
 
 
+// get post by title
+exports.getPostByTitle = async (req, res) => {
+    try{
+        // `${popularPost}`
+        const popularPost = req.params.title;
+        const post = await JobPost.find({title : {$regex: `${popularPost}` }})
+        .populate("recruiter","-password -__v -jobPost").select("-__v")
+        
+        res.status(200).json({
+            status: 'OK',
+            data: post,
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failure!',
+            message: err.message
+        })
+    }
+}
+
+
+// search by title & jobType
+exports.titleAndJobType = async (req, res) => {
+    try{
+        const {title, jobType} = req.body;
+        const post = await JobPost.find({$and: [{title : {$regex: `${title}` }}, {jobType: `${jobType}`}] })
+        .populate("recruiter","-password -__v -jobPost").select("-__v")
+        
+        res.status(200).json({
+            status: 'OK',
+            data: post,
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failure!',
+            message: err.message
+        })
+    }
+}
+
+
 // update post by id
 exports.updateJobPost = async (req, res) => {
     try{
