@@ -9,7 +9,8 @@ const {
     deletePost,
     updateJobPost,
     getPostByTitle,
-    titleAndJobType 
+    titleAndJobType,
+    paginationPosts 
 } = require('../controllers/jobPost/jobPostController');
 
 const { checkLogin } = require('../middleware/checkLogin')
@@ -27,6 +28,8 @@ router.get('/:id', getPost);
 router.get('/popularPost/:title', getPostByTitle);
 
 router.post('/search', titleAndJobType);
+
+router.post('/jobs', paginationPosts);
 
 router.patch('/:id', checkLogin, updateJobPost);
 

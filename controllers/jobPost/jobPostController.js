@@ -162,3 +162,31 @@ exports.deletePost = async (req, res) => {
         })
     }
 }
+
+
+// pagination search by title & jobType
+exports.paginationPosts = async (req, res) => {
+    try{
+        console.log(req.query)
+        const page = req.query.page;
+        const limit = req.query.limit;
+        const skip = (page -1 ) * limit;
+
+        const {title, jobType} = req.body;
+        const posts = await JobPost.find({$and: [{title : {$regex: `${title}` }}, {jobType: `${jobType}`}] })
+        .populate("recruiter","-password -__v -jobPost").select("-__v").skip(skip).limit(limit);
+        
+        const jobs = posts
+
+        res.status(200).json({
+            status: 'OK',
+            data: jobs,
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failure!',
+            message: err.message
+        })
+    }
+}
