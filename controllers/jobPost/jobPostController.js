@@ -168,8 +168,8 @@ exports.deletePost = async (req, res) => {
 exports.paginationPosts = async (req, res) => {
     try{
         console.log(req.query)
-        const page = req.query.page;
-        const limit = req.query.limit;
+        const page = req.query.page * 1;
+        const limit = req.query.limit * 1;
         const skip = (page -1 ) * limit;
 
         const {title, jobType} = req.body;
@@ -180,7 +180,8 @@ exports.paginationPosts = async (req, res) => {
 
         res.status(200).json({
             status: 'OK',
-            data: jobs,
+            data:jobs,
+            count: page
         })
 
     }catch(err){
