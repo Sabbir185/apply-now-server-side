@@ -167,21 +167,56 @@ exports.deletePost = async (req, res) => {
 // pagination search by title & jobType
 exports.paginationPosts = async (req, res) => {
     try{
-        console.log(req.query)
         const page = req.query.page * 1;
         const limit = req.query.limit * 1;
         const skip = (page -1 ) * limit;
 
         const {title, jobType} = req.body;
         const posts = await JobPost.find({$and: [{title : {$regex: `${title}` }}, {jobType: `${jobType}`}] })
-        .populate("recruiter","-password -__v -jobPost").select("-__v").skip(skip).limit(limit);
+        .populate("recruiter","-password -__v -jobPost").select("-__v").skip(skip).limit(limit).sort('-createdAt');
         
-        const jobs = posts
+        const jobs = posts;
+
+        // total post count
+        const postCount = await JobPost.find({$and: [{title : {$regex: `${title}` }}, {jobType: `${jobType}`}] }).countDocuments();
 
         res.status(200).json({
             status: 'OK',
             data:jobs,
-            count: page
+            count: page,
+            postCount: postCount
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failure!',
+            message: err.message
+        })
+    }
+}
+
+
+
+// pagination, get post by title (popular keyword )
+exports.paginationPostByTitle = async (req, res) => {
+    try{
+        const page = req.body.page * 1;
+        const limit = req.body.limit * 1;
+        const skip = (page -1 ) * limit;
+
+        // `${popularPost}`
+        const popularPost = req.params.title;
+        const jobs = await JobPost.find({title : {$regex: `${popularPost}` }})
+        .populate("recruiter","-password -__v -jobPost").select("-__v").skip(skip).limit(limit).sort('-createdAt');
+
+          // total post count
+          const postCount = await JobPost.find({title : {$regex: `${popularPost}` }}).countDocuments();
+        
+        res.status(200).json({
+            status: 'OK',
+            data:jobs,
+            count: page,
+            postCount: postCount,
         })
 
     }catch(err){
