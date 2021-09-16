@@ -12,6 +12,8 @@ exports.createPost = async (req, res) => {
             recruiter: req.user.id
         });
 
+        console.log(newPost)
+
         await Recruiter.updateOne({ _id: req.user.id}, {$push: {jobPost: newPost._id}});
 
         res.status(200).json({
@@ -31,7 +33,7 @@ exports.createPost = async (req, res) => {
 // get all post
 exports.getPosts = async (req, res) => {
     try{
-        const posts = await JobPost.find().select("-__v")
+        const posts = await JobPost.find().select("-__v").sort('-createdAt')
         
         res.status(200).json({
             status: 'OK',
@@ -151,7 +153,7 @@ exports.deletePost = async (req, res) => {
         const post = await JobPost.findByIdAndDelete({ _id: req.params.id });
         
         res.status(200).json({
-            status: 'post deleted successfully!',
+            status: 'Post deleted successfully!',
             delete: true,
         })
 

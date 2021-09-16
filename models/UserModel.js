@@ -38,7 +38,13 @@ const userSchema = new mongoose.Schema({
     image: {
         type: String,
         trim: true
-    }
+    },
+    applications: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Application'
+        }
+    ]
 },{
     timestamps: true,
 });
@@ -53,7 +59,7 @@ userSchema.methods.matchPassword = async function(enterPassword) {
 // generate token for user
 userSchema.methods.generateUserJWT = async function() {
     return await jwt.sign(
-        {id: this._id, username: this.username, name: this.name, email: this.email},
+        {id: this._id, username: this.username, name: this.name, email: this.email, role: this.role},
         process.env.JWT_SECRET,
         {
             expiresIn: `${ process.env.JWT_EXPIRE}`

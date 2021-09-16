@@ -10,7 +10,7 @@ const User = require('../../models/UserModel');
 exports.createUser = async (req, res) => {
     const checkUser = await  User.findOne({$or: [{username: req.body.username}, {email: req.body.email} ]}).select('username email -_id')
     if(checkUser){
-        return res.status(401).json({
+        return res.status(400).json({
             message: 'User already exist!',
             user: checkUser
         });
@@ -84,7 +84,7 @@ exports.getUsers = async (req, res) => {
 // get user by id
 exports.getUser = async (req, res) => {
     try{
-        const allUser = await User.findById({_id: req.params.id}).select('-password -__v');
+        const allUser = await User.findById({_id: req.params.id}).select('-password -__v').populate('applications', 'title company country status createdAt');
         res.status(200).json({
             status: 'successful!',
             user: allUser

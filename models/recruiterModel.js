@@ -10,7 +10,7 @@ const recruiterSchema = new mongoose.Schema({
         required: [true, "Recruiter's must have a username"],
         unique: true,
         trim: true,
-        minlength: [4, 'username needs at lest 4 characters'],
+        minlength: [4, 'username needs at lest 4 characters with number and character'],
     },
     name: {
         type: String,
@@ -72,7 +72,7 @@ recruiterSchema.methods.matchPassword = async function(enterPassword) {
 // generate token for user
 recruiterSchema.methods.generateRecruiterJWT = async function() {
     return await jwt.sign(
-        {id: this._id, username: this.username, name: this.name, email: this.email},
+        {id: this._id, username: this.username, name: this.name, email: this.email, role: this.role},
         process.env.JWT_SECRET,
         {
             expiresIn: `${ process.env.JWT_EXPIRE}`

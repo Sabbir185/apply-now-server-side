@@ -11,7 +11,7 @@ exports.createRecruiter = async (req, res) => {
     const checkRecruiter = await  Recruiter.findOne({$or: [{username: req.body.username}, {email: req.body.email} ]}).select('username email -_id')
     if(checkRecruiter){
         return res.status(401).json({
-            message: 'User already exist!',
+            message: 'Recruiter already exist!',
             user: checkRecruiter
         });
     }

@@ -1,5 +1,6 @@
 // internal import
 const Application = require('../../models/ApplicationModel');
+const User = require('../../models/UserModel');
 
 
 // save new application
@@ -9,15 +10,16 @@ exports.saveApplication = async (req, res) => {
             ...req.body,
             user: req.user.id
         });
-
+        
+        await User.updateOne({_id: req.user.id}, {$push: {applications: newApplication._id}} );
 
         res.status(200).json({
-            status: 'saved new application successfully!',
+            status: 'You have successfully applied!',
             apply: true
         })
     }catch(err){
         res.status(404).json({
-            status: 'failed to save, try again!',
+            status: 'failed to apply, try again!',
         })
     }
 }

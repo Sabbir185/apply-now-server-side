@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 // schema design
 const applicationSchema = new mongoose.Schema({
@@ -31,10 +30,6 @@ const applicationSchema = new mongoose.Schema({
         type: String,
         enum: ['remote','office work']
     },
-    image: {
-        type: String,
-        trim: true
-    },
     company: {
         type: String,
         trim: true,
@@ -46,10 +41,15 @@ const applicationSchema = new mongoose.Schema({
         trim: true,
         required: [true, "recruiter's id needed"],
     },
-    recruiterEmail: {
+    userCV: {
         type: String,
         trim: true,
-        required: [true, "recruiter's Email needed"],
+        required: [true, "user must submit a cv link"]
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'received'],
+        default: 'pending'
     },
     user: {
             type: mongoose.Types.ObjectId,

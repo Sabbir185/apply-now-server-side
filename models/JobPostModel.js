@@ -13,7 +13,7 @@ const jobPostSchema = new mongoose.Schema({
         type: String,
         required: [true, "Job must have a description"],
         trim: true,
-        minlength: [20, 'description needs at lest 20 characters'],
+        minlength: [20, 'description needs at least 20 characters'],
     },
     salary: {
         type: String,
