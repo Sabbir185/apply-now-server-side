@@ -48,7 +48,7 @@ const applicationSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['pending', 'received'],
+        enum: ['pending', 'received', 'reject'],
         default: 'pending'
     },
     user: {

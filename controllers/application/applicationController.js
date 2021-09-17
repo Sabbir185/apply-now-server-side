@@ -82,3 +82,40 @@ exports.deleteApplication = async (req, res) => {
         })
     }
 }
+
+
+// get application by recruiter's id
+exports.getAppByRecruiterId = async (req, res) => {
+    try{
+        const application = await Application.find({recruiterId: `${req.body.recruiterId}`}).populate('user', 'name email');
+        res.status(200).json({
+            status: 'successful!',
+            applications: application,
+        })
+
+    }catch(error){
+        res.status(500).json({
+            status: 'failed!',
+            message: err.message
+        })
+    }
+}
+
+
+// update application status
+exports.updateStatusApplication = async (req, res) => {
+    try{
+        const applications = await Application.updateOne({_id: req.body._id}, { status: req.body.status });
+
+        res.status(200).json({
+            status: 'application updated successfully!',
+            update: true
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'failed!',
+            message: err.message
+        })
+    }
+}

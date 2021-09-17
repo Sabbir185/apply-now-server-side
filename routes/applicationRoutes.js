@@ -6,7 +6,9 @@ const {
     saveApplication, 
     getApplications, 
     getApplication, 
-    deleteApplication
+    deleteApplication,
+    getAppByRecruiterId,
+    updateStatusApplication
 } = require('../controllers/application/applicationController');
 
 const { checkLogin } = require('../middleware/checkLogin')
@@ -20,6 +22,10 @@ router.post('/', checkLogin, saveApplication);
 router.get('/', getApplications);
 
 router.get('/:id', getApplication);
+
+router.post('/findByRecruiterId', getAppByRecruiterId);
+
+router.patch('/statusUpdate', updateStatusApplication);
 
 router.delete('/:id', checkLogin, deleteApplication);
 
