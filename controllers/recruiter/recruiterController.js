@@ -163,3 +163,30 @@ exports.deleteRecruiter = async (req, res) => {
         })
     }
 }
+
+
+// update recruiter profile image
+exports.updateProfile = async (req, res) => {
+    
+    const destination = (req.files[0].destination)
+    const filename = (req.files[0].filename)
+    const imagePath = destination + filename;
+  
+    try{
+
+        const updateUser = await Recruiter.findByIdAndUpdate(
+            { _id: req.params.id },
+            {image: imagePath});
+
+        res.status(200).json({
+            status: 'Profile Updated successfully!',
+            update: true
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failed to update!',
+            message: err.message
+        })
+    }
+}

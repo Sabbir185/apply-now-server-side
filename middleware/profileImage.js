@@ -12,14 +12,14 @@ function profileImage(req, res, next){
     upload.any()(req, res, (err) => {
         if(err){
 
-            // if (req.files.length > 0) {
-            //     const { filename } = req.files[0];
-            //     fs.unlink(path.join(__dirname), `../public/upload/avatars/${filename}`, (err) => {
-            //         if (err) {
-            //             console.log(err)
-            //         }
-            //     })
-            // }
+            if (req.files.length > 0) {
+                const { filename } = req.files[0];
+                fs.unlink(path.join(__dirname), `../public/upload/avatars/${filename}`, (err) => {
+                    if (err) {
+                        console.log(err)
+                    }
+                })
+            }
 
             res.status(500).json({
                 errors: {

@@ -1,9 +1,7 @@
-const { throws } = require('assert');
 const multer = require('multer');
 const path = require('path');
 
 function uploader(subFolder, fileTypeName, maxFileSize, errorMsg){
-    // const UPLOAD_FOLDER = path.join(__dirname, `../public/upload/${subFolder}/`);
 
     const storage = multer.diskStorage({
         destination: (req, file, cb) => {

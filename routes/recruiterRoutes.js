@@ -7,10 +7,12 @@ const {
     getRecruiters,
     getRecruiter,
     recruiterLogin,
-    deleteRecruiter
+    deleteRecruiter,
+    updateProfile
 } = require('../controllers/recruiter/recruiterController');
 
-const { checkLogin } = require('../middleware/checkLogin')
+const { checkLogin } = require('../middleware/checkLogin');
+const { profileImage } = require('../middleware/profileImage');
 
 // app initialization
 const router = express.Router();
@@ -21,6 +23,8 @@ router.post('/login', recruiterLogin);
 
 router.get('/', getRecruiters);
 router.get('/:id', getRecruiter);
+
+router.patch('/update/:id', profileImage, updateProfile);
 
 router.delete('/:id', deleteRecruiter);
 
