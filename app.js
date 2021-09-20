@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const cors = require('cors');
+const path = require('path');
 
 // internal import
 const adminRoutes = require('./routes/adminRoutes');
@@ -24,6 +25,9 @@ if (process.env.NODE_ENV === 'development') {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+
+// static image file handle
+app.use('/public/upload/avatars/', express.static(path.join(__dirname, 'public/upload/avatars/')));
 
 
 // routes

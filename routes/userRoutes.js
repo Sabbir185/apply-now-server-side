@@ -7,10 +7,12 @@ const {
     getUsers, 
     getUser, 
     userLogin, 
-    deleteUser 
+    deleteUser,
+    updateProfile 
 } = require('../controllers/user/userController');
 
-const { checkLogin } = require('../middleware/checkLogin')
+const { checkLogin } = require('../middleware/checkLogin');
+const { profileImage } = require('../middleware/profileImage');
 
 // app initialization
 const router = express.Router();
@@ -21,6 +23,8 @@ router.post('/login', userLogin);
 
 router.get('/getAll', getUsers);
 router.get('/:id', getUser);
+
+router.patch('/update/:id', profileImage, updateProfile);
 
 router.delete('/:id', deleteUser);
 

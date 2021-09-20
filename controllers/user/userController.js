@@ -1,6 +1,8 @@
 // external import
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const path = require('path');
 
 // internal import
 const User = require('../../models/UserModel');
@@ -151,6 +153,34 @@ exports.deleteUser = async (req, res) => {
     }catch(err){
         res.status(500).json({
             status: 'Failed!',
+            message: err.message
+        })
+    }
+}
+
+
+
+// update profile image
+exports.updateProfile = async (req, res) => {
+    
+    const destination = (req.files[0].destination)
+    const filename = (req.files[0].filename)
+    const imagePath = destination + filename;
+  
+    try{
+
+        const updateUser = await User.findByIdAndUpdate(
+            { _id: req.params.id },
+            {image: imagePath});
+
+        res.status(200).json({
+            status: 'Profile Updated successfully!',
+            update: true
+        })
+
+    }catch(err){
+        res.status(500).json({
+            status: 'Failed to update!',
             message: err.message
         })
     }
