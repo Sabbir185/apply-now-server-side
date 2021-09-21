@@ -54,7 +54,7 @@ adminSchema.methods.matchPassword = async function(enterPassword) {
 // token generate both login and signup user
 adminSchema.methods.generateToken = async function() {
     return await jwt.sign(
-        {id: this._id, username: this.username, name: this.username, email: this. email},
+        {id: this._id, username: this.username, name: this.name, email: this. email, role: this.role},
         process.env.JWT_SECRET, 
         {expiresIn: `${process.env.JWT_EXPIRE}`}
     )

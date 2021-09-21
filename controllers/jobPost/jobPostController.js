@@ -33,7 +33,7 @@ exports.createPost = async (req, res) => {
 // get all post
 exports.getPosts = async (req, res) => {
     try{
-        const posts = await JobPost.find().select("-__v").sort('-createdAt')
+        const posts = await JobPost.find().populate("recruiter").select("-__v").sort('-createdAt')
         
         res.status(200).json({
             status: 'OK',
