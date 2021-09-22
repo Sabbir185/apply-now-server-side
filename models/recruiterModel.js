@@ -43,13 +43,13 @@ const recruiterSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: [true, "Recruiter's must have a company"],
-        minlength: [3, "company name too small!"]
+        minlength: [2, "company name too small!"]
     },
     country: {
         type: String,
         trim: true,
         required: [true, "Recruiter's country name needed"],
-        minlength: [3, "country name too small!"],
+        minlength: [2, "country name too small!"],
         lowercase: true
     },
     jobPost: [

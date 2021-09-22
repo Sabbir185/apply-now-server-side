@@ -26,7 +26,7 @@ router.get('/:id', getRecruiter);
 
 router.patch('/update/:id', profileImage, updateProfile);
 
-router.delete('/:id', deleteRecruiter);
+router.delete('/:id', checkLogin, deleteRecruiter);
 
 
 module.exports = router;

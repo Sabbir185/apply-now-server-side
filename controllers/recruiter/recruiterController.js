@@ -35,6 +35,7 @@ exports.createRecruiter = async (req, res) => {
                 id: newRecruiter._id,
                 username: newRecruiter.username,
                 email: newRecruiter.email,
+                role: newRecruiter.role
             },
             process.env.JWT_SECRET,
             {expiresIn: `${process.env.JWT_EXPIRE}`}
@@ -67,7 +68,7 @@ exports.createRecruiter = async (req, res) => {
 // get all recruiter
 exports.getRecruiters = async (req, res) => {
     try{
-        const allRecruiter = await Recruiter.find().select('-password -__v');
+        const allRecruiter = await Recruiter.find().select('-password -__v').sort('-createdAt');
         res.status(200).json({
             status: 'successful!',
             totalRecruiter: allRecruiter.length,

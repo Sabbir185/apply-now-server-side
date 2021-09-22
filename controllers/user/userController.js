@@ -35,6 +35,7 @@ exports.createUser = async (req, res) => {
                 id: newUser._id,
                 username: newUser.username,
                 email: newUser.email,
+                role: newUser.role
             },
             process.env.JWT_SECRET,
             {expiresIn: `${process.env.JWT_EXPIRE}`}
@@ -65,7 +66,7 @@ exports.createUser = async (req, res) => {
 // get all user
 exports.getUsers = async (req, res) => {
     try{
-        const allUser = await User.find().select('-password -__v');
+        const allUser = await User.find().select('-password -__v').sort('-createdAt');
         res.status(200).json({
             status: 'successful!',
             totalUser: allUser.length,

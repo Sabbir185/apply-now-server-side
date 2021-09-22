@@ -24,7 +24,7 @@ const jobPostSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: [true, "country name needed"],
-        minlength: [3, "country name too small!"],
+        minlength: [2, "country name too small!"],
         lowercase: true
     },
     jobType: {
@@ -40,7 +40,7 @@ const jobPostSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: [true, "company needed"],
-        minlength: [3, "company name too small!"],
+        minlength: [2, "company name too small!"],
     },
     isApproved: {
         type: Boolean,
