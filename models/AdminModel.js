@@ -39,6 +39,10 @@ const adminSchema = new mongoose.Schema({
     role: {
         type: String,
         default: 'admin'
+    },
+    adminCreator: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Admin'
     }
 },{
     timestamps: true

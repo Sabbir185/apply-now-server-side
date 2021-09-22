@@ -9,13 +9,13 @@ const {
     getAdmin
 } = require('../controllers/admin/adminController');
 
-const { isAdminAuth } = require('../middleware/checkLogin')
+const { checkLogin } = require('../middleware/checkLogin');
 
 // app initialization
 const router = express.Router();
 
 // routes
-router.post('/', adminCreate);
+router.post('/', checkLogin, adminCreate);
 
 router.post('/login', adminLogin);
 
