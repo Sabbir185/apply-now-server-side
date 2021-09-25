@@ -1,5 +1,6 @@
 // internal import
 const app = require("./app");
+const port = 8080;
 
 // external import
 const mongoose = require("mongoose");
@@ -14,6 +15,4 @@ mongoose
 
   
 // server
-app.listen(process.env.APP_PORT || process.env.PORT || 3000, () => {
-  console.log(`Server is listening ${process.env.APP_PORT}`);
-});
+app.listen(process.env.PORT || port);
