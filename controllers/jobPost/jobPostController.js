@@ -12,8 +12,6 @@ exports.createPost = async (req, res) => {
             recruiter: req.user.id
         });
 
-        console.log(newPost)
-
         await Recruiter.updateOne({ _id: req.user.id}, {$push: {jobPost: newPost._id}});
 
         res.status(200).json({

@@ -16,7 +16,7 @@ function profileImage(req, res, next){
                 const { filename } = req.files[0];
                 fs.unlink(path.join(__dirname), `../public/upload/avatars/${filename}`, (err) => {
                     if (err) {
-                        console.log(err)
+                        res.status(500).json(err);
                     }
                 })
             }
