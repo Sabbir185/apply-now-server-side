@@ -2,7 +2,7 @@
   "name": "apply-now-server-side",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "node server.js"
   },
