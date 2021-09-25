@@ -15,7 +15,7 @@ exports.adminCreate = async (req, res) => {
             email: req.body.email,
             image: req.body.image,
             password: hashedPassword,
-            // admin: req.user.id
+            admin: req.user.id
         })
 
         res.status(200).json({
