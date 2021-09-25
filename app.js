@@ -1,7 +1,6 @@
 // external import
 const express = require('express');
 const dotenv = require('dotenv');
-const mongoose = require("mongoose");
 const cors = require('cors');
 const path = require('path');
 
@@ -46,21 +45,6 @@ app.all('*', (req, res, next) => {
     });
     next();
 })
-
-
-mongoose
-  .connect(process.env.DATABASE_NAME, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Database connection successful!"))
-  .catch((err) => console.log(err));
-
-  
-// server
-app.listen(process.env.APP_PORT || 3000, () => {
-  console.log(`Server is listening ${process.env.APP_PORT}`);
-});
 
 
 // module export
