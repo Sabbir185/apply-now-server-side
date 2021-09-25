@@ -37,6 +37,10 @@ app.use('/recruiter', recruiterRoutes);
 app.use('/jobPost', jobPostRoutes);
 app.use('/application', applicationRoutes);
 
+app.get('/', (req, res) => {
+    res.send("Hello, welcome!")
+})
+
 
 // error handling
 app.all('*', (req, res, next) => {
