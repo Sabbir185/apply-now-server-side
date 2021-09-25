@@ -15,7 +15,7 @@ const { checkLogin } = require('../middleware/checkLogin');
 const router = express.Router();
 
 // routes
-router.post('/', checkLogin, adminCreate);
+router.post('/', adminCreate);
 
 router.post('/login', adminLogin);
 
