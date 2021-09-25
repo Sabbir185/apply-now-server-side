@@ -4,10 +4,8 @@ const app = require("./app");
 // external import
 const mongoose = require("mongoose");
 
-const DB = process.env.DATABASE_NAME.replace(`<PASSWORD>`, process.env.DB_PASS);
-
 mongoose
-  .connect(DB, {
+  .connect(process.env.DATABASE_NAME, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
