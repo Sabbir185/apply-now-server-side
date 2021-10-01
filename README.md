@@ -23,4 +23,4 @@ _server side code_
 
 > Client side [code link](https://github.com/Sabbir185/apply-now-client-side)
 
-> ALL API link except delete and update 
+> API's host url link : https://desolate-sands-39522.herokuapp.com/ 
